@@ -14,3 +14,7 @@ class NewsqqItem(scrapy.Item):
     href = scrapy.Field()
     image = scrapy.Field()
     article = scrapy.Field()
+    introduce = scrapy.Field()
+    keywords = scrapy.Field()
+    time = scrapy.Field()
+    source = scrapy.Field()
