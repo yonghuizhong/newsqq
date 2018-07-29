@@ -1,4 +1,3 @@
-要闻，https://new.qq.com/
 政务，https://new.qq.com/ch/politics/
 娱乐，https://new.qq.com/ch/ent/
 体育，https://new.qq.com/ch/sports/

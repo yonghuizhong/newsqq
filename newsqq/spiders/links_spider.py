@@ -14,7 +14,7 @@ limit_num = len(type_links)
 class LinksSpiderSpider(scrapy.Spider):
     name = 'links_spider'
     allowed_domains = ['new.qq.com']
-    start_urls = ['https://new.qq.com/']
+    start_urls = ['https://new.qq.com/ch/politics/']
 
     def parse(self, response):
         global num
@@ -26,9 +26,10 @@ class LinksSpiderSpider(scrapy.Spider):
         news = NewsqqItem()
         for item in item_list:
             news['category'] = type_links[num].split('，')[0]
-            news['title'] = item.xpath(".//em[@class='f14 l24']/a/text()").extract_first()
+            news['title'] = item.xpath(".//div[@class='picture']/a/img/@alt").extract_first()
             news['href'] = item.xpath(".//div[@class='detail']/h3/a/@href").extract_first()
-            news['image'] = item.xpath(".//img[@class='picto']/@src").extract_first()
+            news['image'] = "https:" + item.xpath(".//div[@class='picture']/a/img/@src").extract_first()
+            news['article'] = 'none'
             yield news
         num += 1
 
