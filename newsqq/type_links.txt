@@ -1,0 +1,10 @@
+要闻，https://new.qq.com/
+政务，https://new.qq.com/ch/politics/
+娱乐，https://new.qq.com/ch/ent/
+体育，https://new.qq.com/ch/sports/
+军事，https://new.qq.com/ch/milite/
+国际，https://new.qq.com/ch/world/
+科技，https://new.qq.com/ch/tech/
+财经，https://new.qq.com/ch/finance/
+汽车，https://new.qq.com/ch/auto/
+旅行，https://new.qq.com/ch/visit/
