@@ -15,6 +15,8 @@ BOT_NAME = 'newsqq'
 SPIDER_MODULES = ['newsqq.spiders']
 NEWSPIDER_MODULE = 'newsqq.spiders'
 
+FEED_EXPORT_ENCODING = 'utf-8'
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'newsqq (+http://www.yourdomain.com)'
