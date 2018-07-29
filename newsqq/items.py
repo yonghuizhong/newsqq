@@ -9,6 +9,7 @@ import scrapy
 
 
 class NewsqqItem(scrapy.Item):
+    cate_en = scrapy.Field()
     category = scrapy.Field()
     title = scrapy.Field()
     href = scrapy.Field()

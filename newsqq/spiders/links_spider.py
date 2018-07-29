@@ -15,7 +15,7 @@ limit_num = len(links)
 
 class LinksSpiderSpider(scrapy.Spider):
     name = 'links_spider'
-    s_url = links[num].split('，')[1]
+    s_url = links[num].split('，')[2]
     start_urls = [s_url]
     print(s_url)
 
@@ -28,6 +28,7 @@ class LinksSpiderSpider(scrapy.Spider):
         news = NewsqqItem()
         for item in item_list:
             news['category'] = links[num].split('，')[0]
+            news['cate_en'] = links[num].split('，')[1]
             news['title'] = item['title']
             news['href'] = item['vurl']
             news['image'] = item['img']
@@ -41,6 +42,6 @@ class LinksSpiderSpider(scrapy.Spider):
         num += 1
         if num < limit_num:
             print(num)
-            next_link = links[num].split('，')[1]
+            next_link = links[num].split('，')[2]
             print(next_link)
             yield scrapy.Request(next_link, callback=self.parse)

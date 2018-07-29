@@ -12,8 +12,8 @@ all_links = []
 for page in range(1, limit_page + 1):
     num = 0  # 第一个类型
     for link in links:
-        next_page = links[num].split('，')[1].format(token, str(page))
-        next_str = links[num].split('，')[0] + "，" + next_page
+        next_page = links[num].split('，')[2].format(token, str(page))
+        next_str = links[num].split('，')[0] + "，" + links[num].split('，')[1] + "，" + next_page
         all_links.append(next_str)
         num += 1  # 下一个类型
 print(len(all_links))
