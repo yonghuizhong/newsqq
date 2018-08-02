@@ -1,4 +1,18 @@
 # newsqq
-scrapy爬取腾讯各类别的新闻
- 
-![cmd运行截图](https://github.com/yonghuizhong/newsqq/blob/master/screenshot/cmd_screenshot.png)
+>- 使用Scrapy框架获取当日腾讯新闻的各类新闻链接、相关信息、正文等；
+>- 数据库为MongoDB，获取的数据量约为1750条，用时约5分钟，具备断点续传、数据监控、导出csv、json、excel等格式； 
+>- 运行：执行[main.py][1]即可，会自动执行如下操作：
+>>1. 清空数据库
+>>2. 运行[genLinks.py][2]生成需获取的所有页面链接，为9大类型，共90个页面链接
+>>3. 执行第一个爬虫：scrapy crawl [links_spider][3]，获取所有页面的新闻链接及相关信息，约1750条数据
+>>4. 运行[autoRestart.py][4]获取所有新闻的正文（会执行第二个爬虫：[article_spider][5]），如果中途中断会自动重新获取剩下的正文
+>>5. 运行[linksAndArticleToExcel.py][6]，会将两个爬虫获取的数据进行整合，并将所有数据导出到excel  
+
+![运行截图](https://github.com/yonghuizhong/newsqq/blob/master/screenshot/get_article.png)
+
+[1]: https:://github.com/yonghuizhong/newsqq/blob/master/main.py
+[2]: https:://github.com/yonghuizhong/newsqq/blob/master/genLinks.py
+[3]: https:://github.com/yonghuizhong/newsqq/blob/master/newsqq/spiders/links_spider.py
+[4]: https:://github.com/yonghuizhong/newsqq/blob/master/autoRestart.py
+[5]: https:://github.com/yonghuizhong/newsqq/blob/master/newsqq/spiders/article_spider.py
+[6]: https:://github.com/yonghuizhong/newsqq/blob/master/linksAndArticleToExcel.py
