@@ -6,13 +6,21 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymongo
 
-client = pymongo.MongoClient('localhost', 27017)
-newsQQDB = client['newsQQDB']
-links = newsQQDB['links']
-
 
 class NewsqqPipeline(object):
+    def __init__(self):
+        self.client = pymongo.MongoClient('localhost', 27017)
+        self.newsQQDB = self.client['newsQQDB']
+        self.links = self.newsQQDB['links']
+        self.article = self.newsQQDB['article']
+
     def process_item(self, item, spider):
-        data = dict(item)
-        links.insert(data)
-        return item
+        if spider.name == 'links_spider':
+            data = dict(item)
+            self.links.insert(data)
+            return item
+
+        elif spider.name == 'article_spider':
+            data2 = dict(item)
+            self.article.insert(data2)
+            return item

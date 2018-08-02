@@ -3,32 +3,33 @@ import scrapy
 import json
 from newsqq.items import NewsqqItem
 
-# 需要爬取的链接
-links = []
-with open('links.txt', 'rt') as f:
-    for line in f:
-        links.append(line.strip())
-print(len(links))
-num = 0
-limit_num = len(links)
-
 
 class LinksSpiderSpider(scrapy.Spider):
     name = 'links_spider'
-    s_url = links[num].split('，')[2]
-    start_urls = [s_url]
-    print(s_url)
+
+    def __init__(self):
+        # 需要爬取的链接
+        self.links = []
+        with open('links.txt', 'rt') as f:
+            for line in f:
+                self.links.append(line.strip())
+        print(len(self.links))
+        self.num = 0
+        self.limit_num = len(self.links)
+
+        s_url = self.links[self.num].split('，')[2]
+        self.start_urls = [s_url]  # 入口链接
+        print(s_url)
 
     def parse(self, response):
-        global num, links, limit_num
         print(response.request.headers['User-Agent'])
         news_data = json.loads(response.text)
         item_list = news_data['data']
         print(len(item_list))
         news = NewsqqItem()
         for item in item_list:
-            news['category'] = links[num].split('，')[0]
-            news['cate_en'] = links[num].split('，')[1]
+            news['category'] = self.links[self.num].split('，')[0]
+            news['cate_en'] = self.links[self.num].split('，')[1]
             news['title'] = item['title']
             news['href'] = item['vurl']
             news['image'] = item['img']
@@ -39,9 +40,9 @@ class LinksSpiderSpider(scrapy.Spider):
             news['source'] = item['source']
             yield news
 
-        num += 1
-        if num < limit_num:
-            print(num)
-            next_link = links[num].split('，')[2]
+        self.num += 1
+        if self.num < self.limit_num:
+            print(self.num)
+            next_link = self.links[self.num].split('，')[2]
             print(next_link)
             yield scrapy.Request(next_link, callback=self.parse)

@@ -3,7 +3,7 @@ links = []
 with open('type_links.txt', 'rt') as f:
     for line in f:
         links.append(line.strip())
-print(len(links))
+print('类型数为' + str(len(links)))
 
 token = 'c232b098ee7611faeffc46409e836360'
 limit_page = 10
@@ -16,7 +16,7 @@ for page in range(1, limit_page + 1):
         next_str = links[num].split('，')[0] + "，" + links[num].split('，')[1] + "，" + next_page
         all_links.append(next_str)
         num += 1  # 下一个类型
-print(len(all_links))
+print('页面数量为' + str(len(all_links)))
 with open('links.txt', 'wt') as f:
     for i in all_links:
         f.write(i + "\n")
