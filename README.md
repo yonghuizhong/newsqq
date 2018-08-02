@@ -8,11 +8,11 @@
 >>4. 运行[autoRestart.py][4]获取所有新闻的正文（会执行第二个爬虫：[article_spider][5]），如果中途中断会自动重新获取剩下的正文
 >>5. 运行[linksAndArticleToExcel.py][6]，会将两个爬虫获取的数据进行整合，并将所有数据导出到excel  
 
-![运行截图](https://github.com/yonghuizhong/newsqq/blob/master/screenshot/get_article.png)
+![运行截图](./screenshot/get_article.png)
 
-[1]: https:://github.com/yonghuizhong/newsqq/blob/master/main.py
-[2]: https:://github.com/yonghuizhong/newsqq/blob/master/genLinks.py
-[3]: https:://github.com/yonghuizhong/newsqq/blob/master/newsqq/spiders/links_spider.py
-[4]: https:://github.com/yonghuizhong/newsqq/blob/master/autoRestart.py
-[5]: https:://github.com/yonghuizhong/newsqq/blob/master/newsqq/spiders/article_spider.py
-[6]: https:://github.com/yonghuizhong/newsqq/blob/master/linksAndArticleToExcel.py
+[1]:./main.py
+[2]:./genLinks.py
+[3]:./spiders/links_spider.py
+[4]:./autoRestart.py
+[5]:./spiders/article_spider.py
+[6]:./linksAndArticleToExcel.py
