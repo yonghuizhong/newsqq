@@ -12,7 +12,7 @@
 
 [1]:./main.py
 [2]:./genLinks.py
-[3]:./spiders/links_spider.py
+[3]:.newsqq/spiders/links_spider.py
 [4]:./autoRestart.py
-[5]:./spiders/article_spider.py
+[5]:.newsqq/spiders/article_spider.py
 [6]:./linksAndArticleToExcel.py
