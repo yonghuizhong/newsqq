@@ -10,7 +10,17 @@ article = newsQQDB['article']
 
 
 for i in article.find():
-    links.update_many({'href': i['href']}, {'$set': {'article': i['article']}})
+    links.update_one({'href': i['href']}, {'$set': {'article': i['article']}})
+    links.update_one({'href': i['href']}, {'$set': {'article': i['article']}})
+
+for i in links.find().limit(1):
+    if isinstance(i['keywords'], list):
+        print('keywords已经是list')
+    else:
+        print('keywords正在转为list')
+        for j in links.find():
+            keywords_array = j['keywords'].split(';')
+            links.update_one({'href': j['href']}, {'$set': {'keywords': keywords_array}})
 
 # links表放到Excel中
 name = '{}'.format(time.strftime("%m%d", time.localtime()))
