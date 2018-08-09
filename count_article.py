@@ -15,6 +15,7 @@ cate = newsQQDB['cate']
 # for i in type_array:
 #     data = {
 #         'type_name': i.split('，')[0],
+#         'type_en': i.split('，')[1],
 #         'type_link': i.split('，')[2]
 #     }
 #     cate.insert_one(data)
