@@ -19,3 +19,4 @@ class NewsqqItem(scrapy.Item):
     keywords = scrapy.Field()
     time = scrapy.Field()
     source = scrapy.Field()
+    second_article = scrapy.Field()

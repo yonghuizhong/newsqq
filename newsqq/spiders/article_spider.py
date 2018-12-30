@@ -35,15 +35,30 @@ class ArticleSpiderSpider(scrapy.Spider):
     def parse(self, response):
         news = NewsqqItem()
         article_array = []
+        second_article = []
         print(response.request.headers['User-Agent'])
         p_list = response.xpath("//p[1]//parent::div/p")
         for p in p_list:
-            p_str = p.xpath("./text()").extract_first()
+            p_str = p.xpath("string(.)").extract_first()    #  将./text()换为string(.)，返回当前元素的所有节点文本内容
             if p_str:
                 article_array.append(p_str)
+
+            # 新增内容
+            if p.xpath(".//img"):
+                img_href = 'https:' + p.xpath(".//img/@src").extract_first()
+                second_article.append(img_href)
+                img_desc = ''
+                if p.xpath(".//i[@class='desc']"):
+                    img_desc =p.xpath(".//i[@class='desc']/text()").extract_first()
+                    second_article.append(img_desc)
+            elif p_str:
+                second_article.append(p_str)
+            ######
+
         article_str = '\n'.join(article_array)
         news['article'] = article_str
         news['href'] = response.request.url
+        news['second_article'] = second_article
         yield news
         self.myNum += 1
 
