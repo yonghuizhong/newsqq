@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 import scrapy
 import pymongo
 from newsqq.items import NewsqqItem
@@ -30,19 +32,20 @@ class ArticleSpiderSpider(scrapy.Spider):
 
         self.allowed_domains = ['new.qq.com']
         s_url = self.myLinks[0]
-        # s_url = 'https://new.qq.com/omn/20181230/20181230A0OZJD00'  #未解决难题
+        # s_url = 'https://new.qq.com/omn/20181230/20181230A0OZJD00'  #此问题的解决方案如下url
+        # s_url = 'https://openapi.inews.qq.com/getQQNewsNormalContent?id=20181230A0OZJD00&refer=mobilewwwqqcom'
+
         # s_url = 'https://new.qq.com/omn/20190101/20190101B0C68V.html'  # 已适配
         self.start_urls = [s_url]
 
     def parse(self, response):
+        # print(json.loads(response.text)['content'])
         news = NewsqqItem()
         article_array = []
-        second_article = []
-        print(response.request.headers['User-Agent'])
+        second_article = []  # 新增
         p_list = response.xpath("//p[1]//parent::div/p")
-        print(response.text)
         for p in p_list:
-            p_str = p.xpath("string(.)").extract_first()  # 将./text()换为string(.)，返回当前元素的所有节点文本内容
+            p_str = p.xpath("string(.)").extract_first()  # 返回当前元素的所有节点文本内容
             p_text = p.xpath("./text()").extract_first()  # 新增
             if p_str:
                 article_array.append(p_str)
