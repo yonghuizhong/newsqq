@@ -25,4 +25,6 @@ if __name__ == '__main__':
 
     print('文章正文获取完毕！正在更新数据库...')
     os.system('python linksAndArticleToExcel.py')
+    # os.system('python updateSummary.py')  # 生成摘要
+    # os.system('sh updateDB.sh')  用于服务器
     print('已导出')

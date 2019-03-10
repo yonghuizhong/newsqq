@@ -1,4 +1,4 @@
-from textrank4zh import TextRank4Sentence
+from Summary import TextRankSentence
 from pathos.multiprocessing import ProcessingPool
 import pymongo
 import time
@@ -7,14 +7,14 @@ import time
 client = pymongo.MongoClient('localhost', 27017)
 newsQQDB = client['newsQQDB']
 links = newsQQDB['links']
-tr4s = TextRank4Sentence()
+tr = TextRankSentence.TextRankSentence()
 
 
 def gen_summary(text, _id):
-    global tr4s
-    tr4s.analyze(text=text, lower=True, source='all_filters')
+    global tr
+    tr.analyze(text=text)
     try:
-        summary = tr4s.get_key_sentences(num=1)[0].sentence
+        summary = tr.get_key_sentences(num=2)
     except:
         summary = ''
     links.update_one({'_id': _id}, {'$set': {'summary': summary, 'my_summary': ''}})
