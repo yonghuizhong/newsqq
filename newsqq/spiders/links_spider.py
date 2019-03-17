@@ -32,7 +32,7 @@ class LinksSpiderSpider(scrapy.Spider):
             news['cate_en'] = self.links[self.num].split(',')[1]
             news['title'] = item['title']
             news['href'] = item['vurl']
-            news['image'] = item['img']
+            news['image'] = item['irs_imgs']['294X195'][0]
             news['article'] = 'none'
             news['introduce'] = item['intro']
             news['keywords'] = item['keywords']
